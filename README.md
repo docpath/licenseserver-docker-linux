@@ -23,8 +23,16 @@ Now we are going to build the container by executing the following sequence in t
 **IMPORTANT!** the full stop at the end indicates the directory where the container is located, this is mandatory.
 
 Run the container once it has been built, use the following sequence:
-`docker run --name licenseserver --detach -p $PORT:1765 -v $LICENSEDIR:<licenses_directory>`
+`docker run --name licenseserver --detach -p $PORT:1765 -v $LICENSEDIR:/usr/local/docpath/Licenses -e MODEONLINE=true docpath/licenseserver`
 
 The used parameters are:
 - --name: this parameter indicates the name of the container, in this case dge.
 - --detach: this parameter indicates that no messages are displayed in the execution console, silent mode.
+- -e MODEONLINE=true: this parameter indicates that the license server will be deployed using online licensing mode, this parameter is optional and can be removed to use offline licensing.
+
+Replace:
+- $PORT: With the port used in the host to redirect to the port 1765 of the container.
+- $LICENSEDIR: Licenses folder in the host what will be linked with the specified folder in the container.
+
+Example:
+`docker run --name licenseserver --detach -p 1765:1765 -v /home/mainuser/docpathlicenses:/usr/local/docpath/Licenses -e MODEONLINE=true docpath/licenseserver` 
