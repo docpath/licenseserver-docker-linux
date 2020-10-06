@@ -35,4 +35,5 @@ Replace:
 - $LICENSEDIR: Licenses folder in the host what will be linked with the specified folder in the container.
 
 Example:
+
 `docker run --name licenseserver --detach -p 1765:1765 -v /home/mainuser/docpathlicenses:/usr/local/docpath/Licenses -e MODEONLINE=true docpath/licenseserver` 
